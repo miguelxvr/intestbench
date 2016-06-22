@@ -12,7 +12,7 @@ function join_unblock_exec
 {
         while [ -n "$(ps aux | grep bash | grep $1 | tr -s " "| cut -d" " -f2)" ]
         do
-                sleep 3
+                sleep 10
         done
 }
 
@@ -53,6 +53,7 @@ function load_variables_from_file
 	base_host_domain_name=$(get_variable $1 "base_host_domain_name")
 	base_host_workload=$(get_variable $1 "base_host_workload")
 	base_host_minimum_memory_in_bytes=$(get_variable $1 "base_host_minimum_memory_in_bytes")
+	base_host_minimum_memory_in_percent=$(get_variable $1 "base_host_minimum_memory_in_percent")
 	base_host_dmon_path=$(get_variable $1 "base_host_dmon_path")
 	
 	stress_host_ip=$(get_variable $1 "stress_host_ip")
@@ -65,17 +66,20 @@ function load_variables_from_file
 	total_memory_in_bytes=$(get_variable $1 "total_memory_in_bytes")
 	total_cores=`nproc --all`
 
-        default_base_host_mem=$(((base_host_minimum_memory_in_bytes * 100)/total_memory_in_bytes))
+#        default_base_host_mem=$(((base_host_minimum_memory_in_bytes * 100)/total_memory_in_bytes))
+        default_base_host_mem=$base_host_minimum_memory_in_percent
         default_stress_host_mem=$((100 - default_base_host_mem))
 	maximum_disk_throughput=$(get_disk_throughput)
+	testname=$(get_variable $1 "test_name")
 
-	output_log=logs/output_$(date +%Y_%m_%d_%H_%M_%S).log
-	workload_log=logs/output_workload_$(date +%Y_%m_%d_%H_%M_%S).log
+	output_log=logs/$testname\_$(date +%Y_%m_%d_%H_%M_%S)_bench.output
+	workload_log=logs/$testname\_$(date +%Y_%m_%d_%H_%M_%S)_workload.output
 
 	echo $base_host_ip	
 	echo $base_host_domain_name
 	echo $base_host_workload
 	echo $base_host_minimum_memory_in_bytes
+	echo $base_host_minimum_memory_in_percent
 	echo $base_host_dmon_path
 	echo $stress_host_ip
 	echo $stress_host_domain_name
@@ -84,6 +88,8 @@ function load_variables_from_file
 	echo $log_cmd
 	echo $total_memory_in_bytes
 	echo $total_cores
+	echo $output_log
+	echo $workload_log
 
 	echo $default_base_host_mem
 	echo $default_stress_host_mem

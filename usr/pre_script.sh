@@ -3,8 +3,8 @@
 HOME_HADOOP=/home/ubuntu/hadoop2-install-scripts/
 
 #spark
-HOME_HADOOP_BIN=/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/terasort/prepare/
-#HOME_HADOOP_BIN=/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/kmeans/prepare/
+#HOME_HADOOP_BIN=/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/terasort/prepare/
+HOME_HADOOP_BIN=/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/kmeans/prepare/
 #HOME_HADOOP_BIN=/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/pagerank/prepare/
 
 #hadoop

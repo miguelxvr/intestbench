@@ -54,6 +54,8 @@ function bench_exec
 
 	bench_alone
 	local wmetric_al=$(get_workload_metric)
+	
+	sleep 15
 
 	bench_son $bench_cmd $bench_param
 	local wmetric=$(get_workload_metric)
@@ -90,7 +92,8 @@ function son0
 
         while [ 1 ]
         do
-		bench_exec ${FUNCNAME[0]} "stress-ng" "-c $total_cores"
+                n_process=$((total_cores/2))
+		bench_exec ${FUNCNAME[0]} "stress-ng" "-c $n_process"
 
 		percent_h1=$((percent_h1 - percent_step))
                 percent_h2=$((100 - percent_h1))

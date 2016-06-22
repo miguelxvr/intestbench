@@ -6,11 +6,13 @@
 base_host_ip				10.0.3.214
 base_host_domain_name 			Bench1
 
+test_name				kmeans_spark
+
 #Spark
 
 #base_host_workload 			/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/pagerank/spark/java/bin/run.sh
-#base_host_workload 			/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/kmeans/spark/java/bin/run.sh
-base_host_workload 			/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/terasort/spark/python/bin/run.sh
+base_host_workload 			/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/kmeans/spark/java/bin/run.sh
+#base_host_workload 			/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/terasort/spark/java/bin/run.sh
 #base_host_workload 			/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/wordcount/spark/java/bin/run.sh
 #base_host_workload 			/home/ubuntu/RUBiS/emulator.sh
 
@@ -18,7 +20,8 @@ base_host_workload 			/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/ter
 
 #base_host_workload 			/home/ubuntu/hadoop2-install-scripts/HiBench/workloads/wordcount/mapreduce/bin/run.sh
 
-base_host_minimum_memory_in_bytes 	16106127360
+base_host_minimum_memory_in_bytes 	26843545600 
+base_host_minimum_memory_in_percent 	40
 base_host_dmon_path 			/home/ubuntu/dmon
 
 # Variables of host2, where the STRESS will run

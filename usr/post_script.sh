@@ -7,7 +7,7 @@ HOME_HADOOP=/home/ubuntu/hadoop2-install-scripts/
 
 function post_script
 {
-	remote_exec $base_host_ip "pushd $HOME_HADOOP; bash deploy-hadoop2.sh -u"
+	remote_exec $base_host_ip "pushd $HOME_HADOOP; bash deploy-hadoop2.sh -u; kill -9 `pidof java`"
 
         echo "Post script completed."
 }

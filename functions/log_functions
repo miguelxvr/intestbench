@@ -72,6 +72,8 @@ function log_bench_statistics
 	if [ $wmetric_al_100"x" != "x" ]; then
 		local pnr_100=$(get_pnr $wmetric_al_100 $wmetric)
 		_logger "$bench_name h1:$percent_h1% h2:$percent_h2% wmetric:$wmetric wmetric_al:$wmetric_al pnr:$pnr pnr_wo/r:$pnr_100"
+#	elif [ $wmetric = $wmetric_al ]; then
+#		_logger "$bench_name h1:$percent_h1% h2:$percent_h2% wmetric:DNR wmetric_al:$wmetric_al"
 	else
 		_logger "$bench_name h1:$percent_h1% h2:$percent_h2% wmetric:$wmetric wmetric_al:$wmetric_al pnr:$pnr"
 	fi

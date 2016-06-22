@@ -68,9 +68,6 @@ function execute_all
 {
 	for i in `seq 0 8`
 	do
-		[ $i -eq 1 ] && continue
-#		[ $i -eq 7 ] && continue
-
 		son$i $3
 	done
 
