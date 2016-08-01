@@ -82,6 +82,10 @@ function bench_alone_exec
         exec_post
 }
 
+########################
+# CPU-related benchmarks
+########################
+
 function son0
 {
 	load_default_values
@@ -105,6 +109,10 @@ function son0
 
 	log_overall_statistics ${FUNCNAME[0]}
 }
+
+###########################
+# memory-related benchmarks
+###########################
 
 function son1
 {
@@ -136,6 +144,147 @@ function son1
 
 function son2
 {
+        load_default_values
+
+        restrict_mem $default_base_host_mem $default_stress_host_mem
+        restrict_disk 50 50
+        restrict_cpu 50 50
+        restrict_cpu_cpuset
+
+        while [ 1 ]
+        do
+                n_process=$((total_cores/2))
+                bench_exec ${FUNCNAME[0]} "stress-ng" "--cache $n_process --cpu-method all"
+
+                percent_h2=$((percent_h2 - percent_step))
+                percent_h1=$((100 - percent_h2))
+
+                [ $percent_h2 -le 0 ] && break
+
+                restrict_disk $percent_h1 $percent_h2
+        done
+
+        log_overall_statistics ${FUNCNAME[0]}
+}
+
+function son3
+{
+        load_default_values
+
+        percent_h1=$default_base_host_mem
+        percent_h2=$default_stress_host_mem
+
+        restrict_cpu_cpuset
+        restrict_cpu 50 50
+        restrict_disk 50 50
+        restrict_mem $default_base_host_mem $default_stress_host_mem
+
+        while [ 1 ]
+        do
+                n_process=$((((percent_h2 * total_memory_in_bytes)/100)/1024/1024/1024))
+                bench_exec ${FUNCNAME[0]} "stress-ng" "--malloc $n_process"
+
+                percent_h2=$((percent_h2 - percent_step))
+                percent_h1=$((100 - percent_h2))
+
+                [ $percent_h2 -le 0 ] && break
+
+                restrict_mem $percent_h1 $percent_h2
+        done
+
+        log_overall_statistics ${FUNCNAME[0]}
+}
+
+function son4
+{
+        load_default_values
+
+        percent_h1=$default_base_host_mem
+        percent_h2=$default_stress_host_mem
+
+        restrict_cpu_cpuset
+        restrict_cpu 50 50
+        restrict_disk 50 50
+        restrict_mem $default_base_host_mem $default_stress_host_mem
+
+        while [ 1 ]
+        do
+                n_process=$((((percent_h2 * total_memory_in_bytes)/100)/1024/1024/1024))
+                bench_exec ${FUNCNAME[0]} "stress-ng" "--mmap $n_process"
+
+                percent_h2=$((percent_h2 - percent_step))
+                percent_h1=$((100 - percent_h2))
+
+                [ $percent_h2 -le 0 ] && break
+
+                restrict_mem $percent_h1 $percent_h2
+        done
+
+        log_overall_statistics ${FUNCNAME[0]}
+}
+
+function son5
+{
+        load_default_values
+
+        percent_h1=$default_base_host_mem
+        percent_h2=$default_stress_host_mem
+
+        restrict_cpu_cpuset
+        restrict_cpu 50 50
+        restrict_disk 50 50
+        restrict_mem $default_base_host_mem $default_stress_host_mem
+
+        while [ 1 ]
+        do
+                n_process=$((((percent_h2 * total_memory_in_bytes)/100)/1024/1024/1024))
+                bench_exec ${FUNCNAME[0]} "stress-ng" "--mmap $n_process --page-in"
+
+                percent_h2=$((percent_h2 - percent_step))
+                percent_h1=$((100 - percent_h2))
+
+                [ $percent_h2 -le 0 ] && break
+
+                restrict_mem $percent_h1 $percent_h2
+        done
+
+        log_overall_statistics ${FUNCNAME[0]}
+}
+
+function son6
+{
+        load_default_values
+
+        percent_h1=$default_base_host_mem
+        percent_h2=$default_stress_host_mem
+
+        restrict_cpu_cpuset
+        restrict_cpu 50 50
+        restrict_disk 50 50
+        restrict_mem $default_base_host_mem $default_stress_host_mem
+
+        while [ 1 ]
+        do
+                n_process=$((((percent_h2 * total_memory_in_bytes)/100)/1024/1024/1024))
+                bench_exec ${FUNCNAME[0]} "stress-ng" "--vm-rw $n_process"
+
+                percent_h2=$((percent_h2 - percent_step))
+                percent_h1=$((100 - percent_h2))
+
+                [ $percent_h2 -le 0 ] && break
+
+                restrict_mem $percent_h1 $percent_h2
+        done
+
+        log_overall_statistics ${FUNCNAME[0]}
+}
+
+#########################
+# disk-related benchmarks
+#########################
+
+function son7
+{
 	load_default_values
 
 	restrict_cpu_cpuset
@@ -159,7 +308,7 @@ function son2
 	log_overall_statistics ${FUNCNAME[0]}
 }
 
-function son3
+function son8
 {
 	load_default_values
 
@@ -186,7 +335,7 @@ function son3
 	log_overall_statistics ${FUNCNAME[0]}
 }
 
-function son4
+function son9
 {
 	load_default_values
 	restrict_cpu_cpuset
@@ -210,7 +359,7 @@ function son4
 	log_overall_statistics ${FUNCNAME[0]}
 }
 
-function son5
+function son10
 {
 	load_default_values
 	restrict_cpu_cpuset
@@ -234,7 +383,7 @@ function son5
 	log_overall_statistics ${FUNCNAME[0]}
 }
 
-function son6
+function son11
 {
 	load_default_values
 	restrict_cpu_cpuset
@@ -258,7 +407,7 @@ function son6
 	log_overall_statistics ${FUNCNAME[0]}
 }
 
-function son7
+function son12
 {
 	load_default_values
 	restrict_cpu_cpuset
@@ -282,28 +431,80 @@ function son7
 	log_overall_statistics ${FUNCNAME[0]}
 }
 
-function son8
+function son13
 {
-	load_default_values
-
-	restrict_mem $default_base_host_mem $default_stress_host_mem
-	restrict_disk 50 50
+        load_default_values
+        restrict_cpu_cpuset
         restrict_cpu 50 50
-	restrict_cpu_cpuset
+        restrict_mem $default_base_host_mem $default_stress_host_mem
+        restrict_disk $percent_h1 $percent_h2
 
-        while [ 1 ]
-        do      
-		n_process=$((total_cores/2))
-		bench_exec ${FUNCNAME[0]} "stress-ng" "--cache $n_process"
+        while [ 1 ] 
+        do
+                n_process=$((total_cores/2))
+                bench_exec ${FUNCNAME[0]} "stress-ng" "--seek $n_process"
 
                 percent_h2=$((percent_h2 - percent_step))
                 percent_h1=$((100 - percent_h2))
 
-		[ $percent_h2 -le 0 ] && break
+                [ $percent_h2 -le 0 ] && break
 
                 restrict_disk $percent_h1 $percent_h2
         done
 
-	log_overall_statistics ${FUNCNAME[0]}
+        log_overall_statistics ${FUNCNAME[0]}
+}
+
+########################
+# IPC-related benchmarks
+########################
+
+function son14
+{
+        load_default_values
+
+        restrict_cpu_cpuset
+        restrict_cpu 100 100
+        restrict_disk 100 100
+        restrict_mem $default_base_host_mem $default_stress_host_mem
+
+	n_process=$((total_cores))
+	bench_exec ${FUNCNAME[0]} "stress-ng" "--msg $n_process"
+
+        log_overall_statistics ${FUNCNAME[0]}
+}
+
+#######################
+# OS-related benchmarks
+#######################
+
+function son15
+{
+        load_default_values
+
+        restrict_cpu_cpuset
+        restrict_cpu 100 100
+        restrict_disk 100 100
+        restrict_mem $default_base_host_mem $default_stress_host_mem
+
+        n_process=$((total_cores))
+        bench_exec ${FUNCNAME[0]} "stress-ng" "--sem $n_process"
+
+        log_overall_statistics ${FUNCNAME[0]}
+}
+
+function son16
+{
+        load_default_values
+
+        restrict_cpu_cpuset
+        restrict_cpu 100 100
+        restrict_disk 100 100
+        restrict_mem $default_base_host_mem $default_stress_host_mem
+
+        n_process=$((total_cores))
+        bench_exec ${FUNCNAME[0]} "stress-ng" "--vfork $n_process"
+
+        log_overall_statistics ${FUNCNAME[0]}
 }
 

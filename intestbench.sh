@@ -66,7 +66,7 @@ function prepare
 
 function execute_all
 {
-	for i in `seq 0 8`
+	for i in `seq 0 16`
 	do
 		son$i $3
 	done

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-LOG_DIR=logs
+LOG_DIR=../logs
 
 [ ! -d $LOG_DIR ] && mkdir -p $LOG_DIR 
-[ "$(find logs -iname *bench.output)" ] || exit 1
+[ "$(find logs -iname $LOG_DIR/*bench.output)" ] || exit 1
 
 echo "workload;son;h1;h2;wm;wma;pnr" 
 
