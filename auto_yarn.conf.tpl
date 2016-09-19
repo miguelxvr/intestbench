@@ -1,0 +1,21 @@
+terasort_hadoop /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/terasort/mapreduce/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/terasort/prepare
+wordcount_hadoop /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/wordcount/mapreduce/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/wordcount/prepare
+pagerank_hadoop /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/pagerank/mapreduce/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/pagerank/prepare
+bayes_hadoop /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/bayes/mapreduce/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/bayes/prepare
+kmeans_hadoop /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/kmeans/mapreduce/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/kmeans/prepare
+sort_hadoop /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/sort/mapreduce/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/sort/prepare
+aggregation_hadoop /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/aggregation/mapreduce/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/aggregation/prepare
+join_hadoop /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/join/mapreduce/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/join/prepare
+scan_hadoop /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/scan/mapreduce/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/scal/prepare
+nutchindexing_hadoop /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/nutchindexing/mapreduce/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/nutchindexing/prepare
+
+terasort_spark /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/terasort/spark/java/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/terasort/prepare
+wordcount_spark /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/wordcount/spark/java/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/wordcount/prepare
+pagerank_spark /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/pagerank/spark/java/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/pagerank/prepare
+bayes_spark /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/bayes/spark/java/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/bayes/prepare
+kmeans_spark /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/kmeans/spark/java/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/kmeans/prepare
+sort_spark /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/sort/spark/java/bin/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/sort/prepare
+aggregation_spark /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/aggregation/spark/java/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/aggregation/prepare
+join_spark /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/join/spark/java/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/join/prepare
+scan_spark /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/scan/spark/java/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/scan/prepare
+nutchindexing_spark /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/nutchindexing/spark/java/run.sh /home/ubuntu/hadoop2-install-scripts/HiBench/workloads/nutchindexing/prepare
